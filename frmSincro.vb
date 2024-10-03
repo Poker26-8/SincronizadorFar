@@ -641,8 +641,8 @@ Public Class frmSincro
                         If odata2.getDr(cnn2, dr1, "select * from grupos where Nombre = '" & dr("Nombre").ToString & "'", sinfo) Then
                         Else
                             ssqlinsertal = ""
-                            ssqlinsertal = "INSERT INTO grupos(nombre,cargado) " &
-                                              " VALUES ('" & dr("Nombre").ToString & "',1)"
+                            ssqlinsertal = "INSERT INTO grupos(nombre,cargado,NumSuc) " &
+                                              " VALUES ('" & dr("Nombre").ToString & "',1," & susursalr & ")"
                             If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
                                 odata.runSp(cnn, "update grupo set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
                             End If
@@ -681,10 +681,10 @@ Public Class frmSincro
                         If odata2.getDr(cnn2, dr1, "select * from departamentos where Nombre = '" & dr("Nombre").ToString & "'", sinfo) Then
                         Else
                             ssqlinsertal = ""
-                            ssqlinsertal = "INSERT INTO departamentos(nombre,cargado) " &
-                                              " VALUES ('" & dr("Nombre").ToString & "',1)"
+                            ssqlinsertal = "INSERT INTO departamentos(nombre,cargado,NumSuc) " &
+                                              " VALUES ('" & dr("Nombre").ToString & "',1," & susursalr & ")"
                             If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
-                                odata.runSp(cnn, "update departamentos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
+                                odata.runSp(cnn, "update departamentos Set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
                             End If
 
                             grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion departamento " & dr("Nombre").ToString, Date.Now)
@@ -719,7 +719,7 @@ Public Class frmSincro
                         My.Application.DoEvents()
 
                         If odata2.getDr(cnn2, dr1, "select * from empleados where IdEmpleado = " & dr("idEmpleado").ToString & " and Sucursal = '" & susursalr & "' ", sinfo) Then
-                        Else
+                            Else
                             ssqlinsertal = ""
                             ssqlinsertal = "INSERT INTO empleados(Nombre, Alias, Clave, Sucursal, IdEmpleado) " &
                                               " VALUES ('" & dr("Nombre").ToString & "','" & dr("Alias").ToString & "','" & dr("Clave").ToString & "','" & susursalr &
@@ -1023,7 +1023,7 @@ Public Class frmSincro
         Dim cnn As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim cnn2 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim sSQL As String = ""
-        sSQL = "Select * from grupos where Cargado=0"
+        sSQL = "Select * from grupos where Cargado=0 and NumSuc = " & susursalr & ""
         Dim sSQL2 As String = ""
         Dim ssqlinsertal As String = ""
         Dim dt As New DataTable
@@ -1041,7 +1041,7 @@ Public Class frmSincro
                             ssqlinsertal = ""
                             ssqlinsertal = "update grupo set Nombre = '" & Replace(dr("Nombre").ToString, "Ã'", "Ñ") & "',Cargado=1 where Nombre = '" & dr("Nombre").ToString & "'"
                             If odata.runSp(cnn, ssqlinsertal, sinfo) Then
-                                odata2.runSp(cnn2, "update grupos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
+                                odata2.runSp(cnn2, "update grupos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "' and NumSuc = " & susursalr & "", sinfo)
                             Else
                                 MsgBox(sinfo)
                             End If
@@ -1050,7 +1050,7 @@ Public Class frmSincro
                             ssqlinsertal = "Insert Into Grupo(Nombre,Cargado) " &
                               "VALUES('" & dr("Nombre").ToString & "',1)"
                             If odata.runSp(cnn, ssqlinsertal, sinfo) Then
-                                odata2.runSp(cnn2, "update grupos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
+                                odata2.runSp(cnn2, "update grupos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "' and NumSuc = " & susursalr & "", sinfo)
                             End If
                             grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion Grupo " & dr("Nombre").ToString, Date.Now)
                         End If
@@ -1068,7 +1068,7 @@ Public Class frmSincro
         Dim cnn As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim cnn2 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim sSQL As String = ""
-        sSQL = "Select * from departamentos where Cargado=0"
+        sSQL = "Select * from departamentos where Cargado=0 and NumSuc = " & susursalr & ""
         Dim sSQL2 As String = ""
         Dim ssqlinsertal As String = ""
         Dim dt As New DataTable
@@ -1086,7 +1086,7 @@ Public Class frmSincro
                             ssqlinsertal = ""
                             ssqlinsertal = "update departamentos set Nombre = '" & Replace(dr("Nombre").ToString, "Ã'", "Ñ") & "' where Nombre = '" & dr("Nombre").ToString & "'"
                             If odata.runSp(cnn, ssqlinsertal, sinfo) Then
-                                odata2.runSp(cnn2, "update departamentos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
+                                odata2.runSp(cnn2, "update departamentos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "' and NumSuc = " & susursalr & "", sinfo)
                             Else
                                 MsgBox(sinfo)
                             End If
@@ -1095,7 +1095,7 @@ Public Class frmSincro
                             ssqlinsertal = "Insert Into Departamentos(Nombre,Cargado) " &
                               "VALUES('" & dr("Nombre").ToString & "',1)"
                             If odata.runSp(cnn, ssqlinsertal, sinfo) Then
-                                odata2.runSp(cnn2, "update departamentos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "'", sinfo)
+                                odata2.runSp(cnn2, "update departamentos set Cargado = 1 where Nombre = '" & dr("Nombre").ToString & "' and NumSuc = " & susursalr & "", sinfo)
                             End If
                             grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion Departamento " & dr("Nombre").ToString, Date.Now)
                         End If

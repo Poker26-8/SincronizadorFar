@@ -103,7 +103,7 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="ToolKitSQL">
-      <HintPath>..\..\..\..\00\DELSSCOM\DLL\ToolKitSQL.dll</HintPath>
+      <HintPath>..\sINCRO FARMACIAS\DelsscomSinCNP_Farmacias\bin\Debug\ToolKitSQL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
