@@ -2046,7 +2046,7 @@ Public Class frmSincro
 
                             bajaTrasEDetalle(dr("Id").ToString, maxIdTraspaso, dr("NumTraspasosE").ToString, dr("XD").ToString)
 
-                            ssql3 = "update Traspasos set CargadoE=1 where Id=" & dr("Id").ToString
+                            ssql3 = "update traspasos set CargadoE=1 where Id=" & dr("Id").ToString
                             If odata2.runSp(cnn2, ssql3, sinfo) Then
                                 grid_eventos.Rows.Insert(0, "Finaliza Traspaso Entrada folio " & dr("NumTraspasosE").ToString, Date.Now)
                             End If
@@ -2210,7 +2210,7 @@ Public Class frmSincro
                         End If
 
                         Dim MaxNumTraspasosS As Integer = 0
-                        If odata2.getDr(cnn2, dr3, "select MAX(NumTraspasosS) as maxi from Traspasos where Origen = " & IdOrigen & "", sinfo) Then
+                        If odata2.getDr(cnn2, dr3, "select MAX(NumTraspasosS) as maxi from traspasos where Origen = " & IdOrigen & "", sinfo) Then
                             If IsNumeric(dr3(0).ToString) Then
                                 MaxNumTraspasosS = dr3(0).ToString + 1
                             Else
@@ -2222,7 +2222,7 @@ Public Class frmSincro
                         End If
 
                         Dim MaxNumTraspasosE As Integer = 0
-                        If odata2.getDr(cnn2, dr3, "select MAX(NumTraspasosE) as maxi from Traspasos where Destino = " & IdDestino & "", sinfo) Then
+                        If odata2.getDr(cnn2, dr3, "select MAX(NumTraspasosE) as maxi from traspasos where Destino = " & IdDestino & "", sinfo) Then
                             If IsNumeric(dr3(0).ToString) Then
                                 MaxNumTraspasosE = dr3(0).ToString + 1
                             Else
@@ -2597,7 +2597,7 @@ Public Class frmSincro
 
         Dim cnn3 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim cnn4 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
-        Dim sSQL As String = "Select * from TraspasosDetalle where IdTraspaso=" & Folio
+        Dim sSQL As String = "Select * from traspasosdetalle where IdTraspaso=" & Folio
         Dim sSQL2 As String = ""
         Dim ssqlinsertal As String = ""
         Dim dt3 As New DataTable
