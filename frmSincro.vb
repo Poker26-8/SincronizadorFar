@@ -3,6 +3,7 @@ Imports MySql
 Imports MySql.Data
 Imports MySql.Data.MySqlClient
 Imports Mysqlx
+Imports System.Data.SqlTypes
 Imports System.IO
 Imports System.Media
 Imports System.Text.RegularExpressions
@@ -23,6 +24,7 @@ Public Class frmSincro
     Dim es_matriz As Integer = 0
     Dim dt_Sucursales As New DataTable
     Dim dr_Sucursales As DataRow
+    Public sucdestino As Integer = 0
 
     Dim codigopro As String = ""
     Dim productosxd As String = ""
@@ -719,7 +721,7 @@ Public Class frmSincro
                         My.Application.DoEvents()
 
                         If odata2.getDr(cnn2, dr1, "select * from empleados where IdEmpleado = " & dr("idEmpleado").ToString & " and Sucursal = '" & susursalr & "' ", sinfo) Then
-                            Else
+                        Else
                             ssqlinsertal = ""
                             ssqlinsertal = "INSERT INTO empleados(Nombre, Alias, Clave, Sucursal, IdEmpleado) " &
                                               " VALUES ('" & dr("Nombre").ToString & "','" & dr("Alias").ToString & "','" & dr("Clave").ToString & "','" & susursalr &
@@ -2208,7 +2210,7 @@ Public Class frmSincro
                         If odata2.getDr(cnn2, dr3, "select Id from sucursales where nombre = '" & dr("Comisionista").ToString & "'", sinfo) Then
                             IdDestino = dr3(0).ToString
                         End If
-
+                        sucdestino = IdDestino
                         Dim MaxNumTraspasosS As Integer = 0
                         If odata2.getDr(cnn2, dr3, "select MAX(NumTraspasosS) as maxi from traspasos where Origen = " & IdOrigen & "", sinfo) Then
                             If IsNumeric(dr3(0).ToString) Then
@@ -2258,7 +2260,7 @@ Public Class frmSincro
             cnn.Close()
         End If
 
-
+        My.Application.DoEvents()
     End Sub
 
     Private Sub busca_ventasl()
@@ -2554,6 +2556,7 @@ Public Class frmSincro
         Dim sSQL As String = "Select * from TrasladosDet where Folio=" & Folio
         Dim sSQL2 As String = ""
         Dim ssqlinsertal As String = ""
+        Dim sqllote As String = ""
         Dim dt3 As New DataTable
         Dim dt4 As New DataTable
         Dim d3 As DataRow
@@ -2570,10 +2573,10 @@ Public Class frmSincro
                         My.Application.DoEvents()
 
                         ssqlinsertal = ""
-                        ssqlinsertal = "INSERT INTO traspasosdetalle(IdTraspaso, Codigo, Nombre, UVenta, Cantidad, Precio, Total, Fecha, Destino, Depto, Grupo)" &
+                        ssqlinsertal = "INSERT INTO traspasosdetalle(IdTraspaso, Codigo, Nombre, UVenta, Cantidad, Precio, Total, Fecha, Destino, Depto, Grupo,Lote,FechaCad)" &
                                         " VALUES (" & maxId & ",'" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "','" & dr4("Unidad").ToString & "'," & dr4("Cantidad").ToString & "," & dr4("Precio").ToString &
                                         "," & dr4("Total").ToString & ",'" & Format(CDate(dr4("Fecha").ToString), "yyyy-MM-dd") & "'," & vardestino &
-                                        ",'" & dr4("Depto").ToString & "','" & dr4("Grupo").ToString & "')"
+                                        ",'" & dr4("Depto").ToString & "','" & dr4("Grupo").ToString & "','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "')"
                         odata4.runSp(cnn4, ssqlinsertal, sinfo)
 
                         Dim IdProdNube As Integer = 0
@@ -2581,9 +2584,15 @@ Public Class frmSincro
                         IdProdNube = d3(0).ToString
 
                         ssqlinsertal = ""
-                        ssqlinsertal = "insert into actuinvtraspasos(Codigo,Descripcion,Cantidad,NumSuc,Id_byzinventario,Tipo) values ('" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "'," & dr4("Cantidad").ToString & "," & vardestino & "," & IdProdNube & ",'ENTRADA')"
+                        ssqlinsertal = "insert into actuinvtraspasos(Codigo,Descripcion,Cantidad,NumSuc,Id_byzinventario,Tipo,Lote,FechaCad) values ('" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "'," & dr4("Cantidad").ToString & "," & vardestino & "," & IdProdNube & ",'ENTRADA','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "')"
                         odata4.runSp(cnn4, ssqlinsertal, sinfo)
-
+                        'If dr4("Lote") <> "" Then
+                        '    sqllote = ""
+                        '    sqllote = "insert into lotecaducidad(Codigo,Lote,FechaCad,Cantidad,NumSuc,Bajado) values ('" & dr4("Codigo").ToString & "','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "','" & dr4("Cantidad").ToString & "'," & sucdestino & ",0)"
+                        '    If odata4.runSp(cnn4, sqllote, sinfo) Then
+                        '    Else
+                        '    End If
+                        'End If
                     Next
                 End If
                 cnn4.Close()
@@ -3311,7 +3320,7 @@ Public Class frmSincro
 
         Dim cnn100 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
         Dim cnn2100 As MySqlClient.MySqlConnection = New MySqlClient.MySqlConnection
-        Dim sSQL As String = "Select * from LoteCaducidad where Codigo = '" & Trim(codigo) & "' and Cantidad > 0"
+        Dim sSQL As String = "Select * from LoteCaducidad where Codigo = '" & Trim(codigo) & "' and Cantidad > 0 and Lote='" & lote & "'"
         Dim ssqlinsertal As String = ""
         Dim ssql3 As String = ""
         Dim dt100 As New DataTable
