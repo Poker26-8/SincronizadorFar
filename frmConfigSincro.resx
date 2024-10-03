@@ -112,16 +112,16 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnout.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAD0AAAAvCAYAAABQfMJ5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAA9tJREFUaEPlmc9LlEEYx/0TPOl18ebJxUWTwlyKLAx/QKdQSKIgpIN1CLqoUCB0
+        DwAACw8BkvkDpQAAA9tJREFUaEPlmc9LlEEYx/0TPOl18ebJxUWTwlyKLAx/QKdQSKIgpIN1CLqoUCB0
         8pAEgbCHQAoCAyOwDh48dPCwBAlRkHcJ1oNKHd7peXZ32nnn/c77zrzv7LJshw/id+fdfT7MzLPzvtsl
         hPjvgGGnA8NOB4btzujoozvr69u3gyAo1smjcSZg2K4MDz8oEmVCTE8/Efv7349IWBC7aLwJGLYjJDrP
         sir5/IJYWtr4c3Jy9hldYwKGzWJqanWR6EavxUGCPMMR4d7eqdOenkmxt/flAF1nAobNgGRLhCDKLuLj
@@ -144,7 +144,7 @@
   <data name="btnGuardaFormatos.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAAAvCAYAAAC/vqlHAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EAAACxABrSO9dQAAAu5JREFUaEPt099LU2Ecx3H/hP4Eb4uQruwHBaMkCHZTFoU3iVdZCCaBBBHLLlSK
+        DwAACw8BkvkDpQAAAu5JREFUaEPt099LU2Ecx3H/hP4Eb4uQruwHBaMkCHZTFoU3iVdZCCaBBBHLLlSK
         aCpW0Nam1mSTNX//ijmn5oTZNlbkIusoKA0xGWathD09z2BxOn327LglO+e4i9fNx1183xyfIkLIngJH
         LYOjlsFRy+CoZXDkSSQSxZSOudduv3Sm4qZO7Ep9i/7DUkyXzvj0gr7iauPFU+W1+pNna3RirlG//s27
         FV2KyTZegm7IBRx5aKiBImbbyFcaSKRqbj0iNCytoYlw8ndl5bWERv7FMTBLaOgfpy9cj9PdRenQLdmA

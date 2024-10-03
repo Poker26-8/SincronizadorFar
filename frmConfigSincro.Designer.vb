@@ -45,9 +45,20 @@ Partial Class frmConfigSincro
         Me.txtUsuarioF = New System.Windows.Forms.TextBox()
         Me.txtBaseF = New System.Windows.Forms.TextBox()
         Me.txtServidorF = New System.Windows.Forms.TextBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtContraA = New System.Windows.Forms.TextBox()
+        Me.txtUsuarioA = New System.Windows.Forms.TextBox()
+        Me.txtBaseA = New System.Windows.Forms.TextBox()
+        Me.txtServidorA = New System.Windows.Forms.TextBox()
+        Me.chkInvDir = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -65,7 +76,7 @@ Partial Class frmConfigSincro
         Me.GroupBox1.Size = New System.Drawing.Size(286, 132)
         Me.GroupBox1.TabIndex = 1
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Datos sincronizador"
+        Me.GroupBox1.Text = "Datos Sincronizador"
         '
         'Label4
         '
@@ -138,7 +149,7 @@ Partial Class frmConfigSincro
         Me.btnout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnout.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnout.Location = New System.Drawing.Point(238, 351)
+        Me.btnout.Location = New System.Drawing.Point(229, 239)
         Me.btnout.Name = "btnout"
         Me.btnout.Size = New System.Drawing.Size(60, 63)
         Me.btnout.TabIndex = 257
@@ -152,7 +163,7 @@ Partial Class frmConfigSincro
         Me.btnGuardaFormatos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.btnGuardaFormatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGuardaFormatos.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnGuardaFormatos.Location = New System.Drawing.Point(172, 351)
+        Me.btnGuardaFormatos.Location = New System.Drawing.Point(163, 239)
         Me.btnGuardaFormatos.Name = "btnGuardaFormatos"
         Me.btnGuardaFormatos.Size = New System.Drawing.Size(60, 63)
         Me.btnGuardaFormatos.TabIndex = 256
@@ -163,7 +174,7 @@ Partial Class frmConfigSincro
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.cbosucursal)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 288)
+        Me.GroupBox3.Location = New System.Drawing.Point(12, 150)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(286, 57)
         Me.GroupBox3.TabIndex = 255
@@ -188,12 +199,12 @@ Partial Class frmConfigSincro
         Me.GroupBox2.Controls.Add(Me.txtUsuarioF)
         Me.GroupBox2.Controls.Add(Me.txtBaseF)
         Me.GroupBox2.Controls.Add(Me.txtServidorF)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 150)
+        Me.GroupBox2.Location = New System.Drawing.Point(304, 12)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(286, 132)
         Me.GroupBox2.TabIndex = 254
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Datos autofacturación"
+        Me.GroupBox2.Text = "Datos Autofacturación"
         '
         'Label5
         '
@@ -259,12 +270,106 @@ Partial Class frmConfigSincro
         Me.txtServidorF.Size = New System.Drawing.Size(164, 20)
         Me.txtServidorF.TabIndex = 0
         '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.chkInvDir)
+        Me.GroupBox4.Controls.Add(Me.Label9)
+        Me.GroupBox4.Controls.Add(Me.Label10)
+        Me.GroupBox4.Controls.Add(Me.Label11)
+        Me.GroupBox4.Controls.Add(Me.Label12)
+        Me.GroupBox4.Controls.Add(Me.txtContraA)
+        Me.GroupBox4.Controls.Add(Me.txtUsuarioA)
+        Me.GroupBox4.Controls.Add(Me.txtBaseA)
+        Me.GroupBox4.Controls.Add(Me.txtServidorA)
+        Me.GroupBox4.Location = New System.Drawing.Point(304, 148)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(286, 159)
+        Me.GroupBox4.TabIndex = 258
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Datos Android"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(11, 104)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(79, 13)
+        Me.Label9.TabIndex = 7
+        Me.Label9.Text = "Contraseña DB"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(11, 78)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(61, 13)
+        Me.Label10.TabIndex = 6
+        Me.Label10.Text = "Usuario DB"
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(11, 52)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(75, 13)
+        Me.Label11.TabIndex = 5
+        Me.Label11.Text = "Base de datos"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(11, 26)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(46, 13)
+        Me.Label12.TabIndex = 4
+        Me.Label12.Text = "Servidor"
+        '
+        'txtContraA
+        '
+        Me.txtContraA.Location = New System.Drawing.Point(113, 100)
+        Me.txtContraA.Name = "txtContraA"
+        Me.txtContraA.Size = New System.Drawing.Size(164, 20)
+        Me.txtContraA.TabIndex = 3
+        '
+        'txtUsuarioA
+        '
+        Me.txtUsuarioA.Location = New System.Drawing.Point(113, 74)
+        Me.txtUsuarioA.Name = "txtUsuarioA"
+        Me.txtUsuarioA.Size = New System.Drawing.Size(164, 20)
+        Me.txtUsuarioA.TabIndex = 2
+        '
+        'txtBaseA
+        '
+        Me.txtBaseA.Location = New System.Drawing.Point(113, 48)
+        Me.txtBaseA.Name = "txtBaseA"
+        Me.txtBaseA.Size = New System.Drawing.Size(164, 20)
+        Me.txtBaseA.TabIndex = 1
+        '
+        'txtServidorA
+        '
+        Me.txtServidorA.Location = New System.Drawing.Point(113, 22)
+        Me.txtServidorA.Name = "txtServidorA"
+        Me.txtServidorA.Size = New System.Drawing.Size(164, 20)
+        Me.txtServidorA.TabIndex = 0
+        '
+        'chkInvDir
+        '
+        Me.chkInvDir.AutoSize = True
+        Me.chkInvDir.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkInvDir.Location = New System.Drawing.Point(156, 129)
+        Me.chkInvDir.Name = "chkInvDir"
+        Me.chkInvDir.Size = New System.Drawing.Size(121, 19)
+        Me.chkInvDir.TabIndex = 9
+        Me.chkInvDir.Text = "Inventario Directo"
+        Me.chkInvDir.UseVisualStyleBackColor = True
+        '
         'frmConfigSincro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(306, 425)
+        Me.ClientSize = New System.Drawing.Size(609, 320)
+        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.btnout)
         Me.Controls.Add(Me.btnGuardaFormatos)
         Me.Controls.Add(Me.GroupBox3)
@@ -278,6 +383,8 @@ Partial Class frmConfigSincro
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -304,4 +411,14 @@ Partial Class frmConfigSincro
     Friend WithEvents txtUsuarioF As TextBox
     Friend WithEvents txtBaseF As TextBox
     Friend WithEvents txtServidorF As TextBox
+    Friend WithEvents GroupBox4 As GroupBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents txtContraA As TextBox
+    Friend WithEvents txtUsuarioA As TextBox
+    Friend WithEvents txtBaseA As TextBox
+    Friend WithEvents txtServidorA As TextBox
+    Friend WithEvents chkInvDir As CheckBox
 End Class

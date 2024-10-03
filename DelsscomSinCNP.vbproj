@@ -11,7 +11,7 @@
     <AssemblyName>DelsscomSinCNP</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -28,6 +28,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -38,6 +39,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>DelsscomSinCNP.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -48,6 +50,7 @@
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>DelsscomSinCNP.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -73,6 +76,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DefineTrace>true</DefineTrace>
@@ -82,10 +86,12 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\..\RESTAURANTES\SQL\RestaurantPro_Aleck's\Restaurant Pro\bin\Debug\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=8.0.25.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -119,12 +125,6 @@
     <Compile Include="frmConfigSincro.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLicencia.Designer.vb">
-      <DependentUpon>frmLicencia.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmLicencia.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmSincro.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -154,9 +154,6 @@
     <EmbeddedResource Include="frmConfigSincro.resx">
       <DependentUpon>frmConfigSincro.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLicencia.resx">
-      <DependentUpon>frmLicencia.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmSincro.resx">
       <DependentUpon>frmSincro.vb</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +165,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

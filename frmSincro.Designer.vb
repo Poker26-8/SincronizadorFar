@@ -23,10 +23,11 @@ Partial Class frmSincro
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSincro))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.lbl_direccion = New System.Windows.Forms.Label()
         Me.lbl_nombre = New System.Windows.Forms.Label()
@@ -39,6 +40,7 @@ Partial Class frmSincro
         Me.Timer_reconecta = New System.Windows.Forms.Timer(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NotifyIcon2 = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.grid_eventos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,21 +61,32 @@ Partial Class frmSincro
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.Controls.Add(Me.lbl_direccion)
         Me.GroupBox1.Controls.Add(Me.lbl_nombre)
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(4, 43)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(539, 125)
+        Me.GroupBox1.Size = New System.Drawing.Size(539, 141)
         Me.GroupBox1.TabIndex = 138
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos"
         '
+        'Label3
+        '
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(8, 78)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(511, 21)
+        Me.Label3.TabIndex = 6
+        Me.Label3.Text = "Label3"
+        Me.Label3.Visible = False
+        '
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(8, 89)
+        Me.Label1.Location = New System.Drawing.Point(8, 107)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(511, 22)
         Me.Label1.TabIndex = 5
@@ -84,9 +97,9 @@ Partial Class frmSincro
         'lbl_direccion
         '
         Me.lbl_direccion.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_direccion.Location = New System.Drawing.Point(8, 47)
+        Me.lbl_direccion.Location = New System.Drawing.Point(8, 51)
         Me.lbl_direccion.Name = "lbl_direccion"
-        Me.lbl_direccion.Size = New System.Drawing.Size(511, 37)
+        Me.lbl_direccion.Size = New System.Drawing.Size(511, 20)
         Me.lbl_direccion.TabIndex = 4
         Me.lbl_direccion.Text = "Label3"
         '
@@ -103,9 +116,9 @@ Partial Class frmSincro
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.grid_eventos)
-        Me.GroupBox2.Location = New System.Drawing.Point(4, 174)
+        Me.GroupBox2.Location = New System.Drawing.Point(4, 188)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(539, 400)
+        Me.GroupBox2.Size = New System.Drawing.Size(539, 381)
         Me.GroupBox2.TabIndex = 139
         Me.GroupBox2.TabStop = False
         '
@@ -113,8 +126,8 @@ Partial Class frmSincro
         '
         Me.grid_eventos.AllowUserToAddRows = False
         Me.grid_eventos.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.grid_eventos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.grid_eventos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.grid_eventos.BackgroundColor = System.Drawing.Color.White
         Me.grid_eventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_eventos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
@@ -124,7 +137,7 @@ Partial Class frmSincro
         Me.grid_eventos.Name = "grid_eventos"
         Me.grid_eventos.ReadOnly = True
         Me.grid_eventos.RowHeadersVisible = False
-        Me.grid_eventos.Size = New System.Drawing.Size(533, 381)
+        Me.grid_eventos.Size = New System.Drawing.Size(533, 362)
         Me.grid_eventos.TabIndex = 1
         '
         'Column1
@@ -154,7 +167,7 @@ Partial Class frmSincro
         '
         'Timer_datos
         '
-        Me.Timer_datos.Interval = 40000
+        Me.Timer_datos.Interval = 30000
         '
         'Timer_reconecta
         '
@@ -173,12 +186,25 @@ Partial Class frmSincro
         Me.NotifyIcon2.Icon = CType(resources.GetObject("NotifyIcon2.Icon"), System.Drawing.Icon)
         Me.NotifyIcon2.Text = "NotifyIcon2"
         '
+        'Label4
+        '
+        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label4.BackColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(170, Byte), Integer), CType(CType(220, Byte), Integer))
+        Me.Label4.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(225, 9)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(318, 22)
+        Me.Label4.TabIndex = 141
+        Me.Label4.Text = "Delsscom Sincronizador Farmacias Version 2.1"
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'frmSincro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
         Me.ClientSize = New System.Drawing.Size(548, 578)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.btn_configura)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -207,4 +233,6 @@ Partial Class frmSincro
     Friend WithEvents Timer_reconecta As Timer
     Friend WithEvents NotifyIcon1 As NotifyIcon
     Friend WithEvents NotifyIcon2 As NotifyIcon
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Label4 As Label
 End Class
