@@ -2628,10 +2628,10 @@ Public Class frmSincro
                         ssqlinsertal = ""
                         Dim fecha As Date = dr4("Fecha").ToString
 
-                        ssqlinsertal = "INSERT INTO TrasladosDet(Folio, Codigo, Nombre, Unidad, Cantidad, Precio, Total, Fecha, Comisionista, Depto, Grupo, concepto, num_traslado)" &
+                        ssqlinsertal = "INSERT INTO TrasladosDet(Folio, Codigo, Nombre, Unidad, Cantidad, Precio, Total, Fecha, Comisionista, Depto, Grupo, concepto, num_traslado,Lote,FCaduca)" &
                                         " VALUES (" & maxId & ",'" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "','" & dr4("UVenta").ToString & "'," & dr4("Cantidad").ToString & "," & dr4("Precio").ToString &
                                         "," & dr4("Total").ToString & ",'" & Format(fecha, "yyyy-MM-dd") & "','" & vardestino &
-                                        "','" & dr4("Depto").ToString & "','" & dr4("Grupo").ToString & "','ENTRADA'," & numTras & ")"
+                                        "','" & dr4("Depto").ToString & "','" & dr4("Grupo").ToString & "','ENTRADA'," & numTras & ",'" & dr4("Lote").ToString & "','" & dr4("FechaCad").ToString & "')"
 
                         odata3.runSp(cnn3, ssqlinsertal, sinfo)
 
@@ -3356,7 +3356,7 @@ Public Class frmSincro
                     Next
 
                     If banderaentra = 0 Then
-                        ssqlinsertal = "insert into LoteCaducidad(Codigo,Lote,FechaCaducidad,Cantidad) values('" & Trim(codigo) & "','" & Trim(lote) & "','" & Trim(fechacad) & "'," & Trim(cantidad) & ")"
+                        ssqlinsertal = "insert into LoteCaducidad(Codigo,Lote,Caducidad,Cantidad) values('" & Trim(codigo) & "','" & Trim(lote) & "','" & Trim(fechacad) & "'," & Trim(cantidad) & ")"
                         If odata100.runSp(cnn100, ssqlinsertal, sinfo) Then
 
                         End If
@@ -3365,7 +3365,9 @@ Public Class frmSincro
                 Else
                     ssqlinsertal = ""
                     If tipo = 1 Then
-                        ssqlinsertal = "insert into LoteCaducidad(Codigo,Lote,FechaCaducidad,Cantidad) values('" & Trim(codigo) & "','" & Trim(lote) & "','" & Trim(fechacad) & "'," & Trim(cantidad) & ")"
+                        Dim fcad As Date = fechacad
+                        fechacad = Format(fcad, "yyyy-MM")
+                        ssqlinsertal = "insert into LoteCaducidad(Codigo,Lote,Caducidad,Cantidad) values('" & Trim(codigo) & "','" & Trim(lote) & "','" & Trim(fechacad) & "'," & Trim(cantidad) & ")"
                     Else
                     End If
                     If odata100.runSp(cnn100, ssqlinsertal, sinfo) Then
