@@ -520,11 +520,11 @@ Public Class frmSincro
             bajaExitTrasSalida()
             My.Application.DoEvents()
 
-            bajaTraspasosEntrada()
-            My.Application.DoEvents()
+            'bajaTraspasosEntrada()
+            'My.Application.DoEvents()
 
-            bajaExitTrasEntrada()
-            My.Application.DoEvents()
+            'bajaExitTrasEntrada()
+            'My.Application.DoEvents()
 
             buscaDevoluciones()
             My.Application.DoEvents()
