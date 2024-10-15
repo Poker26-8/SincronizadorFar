@@ -1920,10 +1920,6 @@ Public Class frmSincro
 
                         My.Application.DoEvents()
 
-                        'ssqlinsertal = "INSERT INTO TrasladosDet(Folio, Codigo, Nombre, Unidad, Cantidad, Precio, Total, PrecioSinIVA, TotalSinIVA, Fecha, Comisionista, Depto, Grupo, concepto, num_traslado)" &
-                        '                " VALUES (" & maxId & ",'" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "','" & dr4("UVenta").ToString & "'," & dr4("Cantidad").ToString & "," & dr4("Precio").ToString &
-                        '                "," & dr4("Total").ToString & "," & dr4("Precio").ToString & "," & dr4("Total").ToString & ",'" & Format(CDate(dr4("Fecha").ToString), "dd/MM/yyyy") & "','" & vardestino &
-                        '                "','" & dr4("Depto").ToString & "','" & dr4("Grupo").ToString & "','SALIDA'," & numTras & ")"
                         ssqlinsertal = ""
 
                         Dim fechapago As Date = dr4("Fecha").ToString
