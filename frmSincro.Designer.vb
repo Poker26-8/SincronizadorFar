@@ -211,7 +211,7 @@ Partial Class frmSincro
         Me.Controls.Add(Me.Label2)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmSincro"
-        Me.Text = "Delsscom® Sincronizador Control Negocios Pro"
+        Me.Text = "Delsscom® Sincronizador Farmacias"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.grid_eventos, System.ComponentModel.ISupportInitialize).EndInit()
