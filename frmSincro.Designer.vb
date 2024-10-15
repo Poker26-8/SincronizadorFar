@@ -195,7 +195,7 @@ Partial Class frmSincro
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(318, 22)
         Me.Label4.TabIndex = 141
-        Me.Label4.Text = "Delsscom Sincronizador Farmacias Version 2.3"
+        Me.Label4.Text = "Delsscom Sincronizador Farmacias Version 2.7.1"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmSincro
