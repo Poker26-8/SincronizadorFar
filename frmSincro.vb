@@ -2300,7 +2300,7 @@ Public Class frmSincro
                             grid_eventos.Rows.Insert(0, "Actualiza Venta folio " & dr("Folio").ToString, Date.Now)
                             My.Application.DoEvents()
                             ssqlinsertal = "update ventas set Subtotal = " & Replace(dr("Subtotal").ToString, ",", "") & ", IVA = " & Replace(dr("IVA").ToString, ",", "") & ", Totales = " & Replace(dr("Totales").ToString, ",", "") & ", Descuento = " & Replace(dr("Descuento").ToString, ",", "") & ", Devolucion = " & Replace(dr("Devolucion").ToString, ",", "") & ", ACuenta = " & Replace(dr("ACuenta").ToString, ",", "") & "," &
-                                              " Resta = " & Replace(dr("Resta").ToString, ",", "") & ", Status = '" & dr("Status").ToString & "' where sucursal = " & susursalr & " and Folio = " & dr("Folio").ToString & ""
+                                              " Resta =  " & Replace(dr("Resta").ToString, ",", "") & ", Status = '" & dr("Status").ToString & "' where sucursal = " & susursalr & " and Folio = " & dr("Folio").ToString & ""
 
                             If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
                                 ssql3 = "update Ventas set cargado=1 where Folio=" & dr("Folio").ToString
