@@ -463,80 +463,80 @@ Public Class frmSincro
         My.Application.DoEvents()
 
         If Trim(sTargetdSincro) <> "" Then
-            'subeGrupos()
+            subeGrupos()
+            My.Application.DoEvents()
+
+            bajaGrupos()
+            My.Application.DoEvents()
+
+            subeDepartamentos()
+            My.Application.DoEvents()
+
+            bajaDepartamentos()
+            My.Application.DoEvents()
+
+            subeEmpleados()
+            My.Application.DoEvents()
+
+            bajaEliminarProd()
+            My.Application.DoEvents()
+
+            subeProductos()
+            My.Application.DoEvents()
+
+            bajaProductos()
+            My.Application.DoEvents()
+
+            subeExistencias()
+            My.Application.DoEvents()
+
+            bajaExistencias()
+            My.Application.DoEvents()
+
+            bajaPrecios()
+            My.Application.DoEvents()
+
+            bajaCompra()
+            My.Application.DoEvents()
+
+            bajaExitCompra()
+            My.Application.DoEvents()
+
+            bajaAbonoCompra()
+            My.Application.DoEvents()
+
+            subeCompra()
+            My.Application.DoEvents()
+
+            subeAbonoCompra()
+            My.Application.DoEvents()
+
+            subeTraspasoSalida()
+            My.Application.DoEvents()
+
+            bajaTraspasoSalida()
+            My.Application.DoEvents()
+
+            bajaExitTrasSalida()
+            My.Application.DoEvents()
+
+            'bajaTraspasosEntrada()
             'My.Application.DoEvents()
 
-            'bajaGrupos()
+            'bajaExitTrasEntrada()
             'My.Application.DoEvents()
 
-            'subeDepartamentos()
+            buscaDevoluciones()
+            My.Application.DoEvents()
+
+            'busca_ventasFranquicia()
             'My.Application.DoEvents()
-
-            'bajaDepartamentos()
-            'My.Application.DoEvents()
-
-            'subeEmpleados()
-            'My.Application.DoEvents()
-
-            'bajaEliminarProd()
-            'My.Application.DoEvents()
-
-            'subeProductos()
-            'My.Application.DoEvents()
-
-            'bajaProductos()
-            'My.Application.DoEvents()
-
-            'subeExistencias()
-            'My.Application.DoEvents()
-
-            'bajaExistencias()
-            'My.Application.DoEvents()
-
-            'bajaPrecios()
-            'My.Application.DoEvents()
-
-            'bajaCompra()
-            'My.Application.DoEvents()
-
-            'bajaExitCompra()
-            'My.Application.DoEvents()
-
-            'bajaAbonoCompra()
-            'My.Application.DoEvents()
-
-            'subeCompra()
-            'My.Application.DoEvents()
-
-            'subeAbonoCompra()
-            'My.Application.DoEvents()
-
-            'subeTraspasoSalida()
-            'My.Application.DoEvents()
-
-            'bajaTraspasoSalida()
-            'My.Application.DoEvents()
-
-            'bajaExitTrasSalida()
-            'My.Application.DoEvents()
-
-            ''bajaTraspasosEntrada()
-            ''My.Application.DoEvents()
-
-            ''bajaExitTrasEntrada()
-            ''My.Application.DoEvents()
-
-            'buscaDevoluciones()
-            'My.Application.DoEvents()
-
-            ''busca_ventasFranquicia()
-            ''My.Application.DoEvents()
 
             busca_ventasl()
             My.Application.DoEvents()
 
-            'busca_abonos()
-            'My.Application.DoEvents()
+            busca_abonos()
+            My.Application.DoEvents()
 
         End If
 
@@ -2296,7 +2296,7 @@ Public Class frmSincro
                             grid_eventos.Rows.Insert(0, "Actualiza Venta folio " & dr("Folio").ToString, Date.Now)
                             My.Application.DoEvents()
                             ssqlinsertal = "update ventas set Subtotal = " & Replace(dr("Subtotal").ToString, ",", "") & ", IVA = " & Replace(dr("IVA").ToString, ",", "") & ", Totales = " & Replace(dr("Totales").ToString, ",", "") & ", Descuento = " & Replace(dr("Descuento").ToString, ",", "") & ", Devolucion = " & Replace(dr("Devolucion").ToString, ",", "") & ", ACuenta = " & Replace(dr("ACuenta").ToString, ",", "") & "," &
-                                              " Resta = " & Replace(dr("Resta").ToString, ",", "") & ", Status = '" & dr("Status").ToString & "' where sucursal = " & susursalr & " and Folio = " & dr("Folio").ToString & ""
+                                              " Resta =  " & Replace(dr("Resta").ToString, ",", "") & ", Status = '" & dr("Status").ToString & "' where sucursal = " & susursalr & " and Folio = " & dr("Folio").ToString & ""
 
                             If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
                                 ssql3 = "update Ventas set cargado=1 where Folio=" & dr("Folio").ToString
