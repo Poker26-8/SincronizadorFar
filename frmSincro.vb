@@ -1455,14 +1455,14 @@ Public Class frmSincro
                                 If odata2.runSp(cnn2, ssql3, sinfo) Then
                                     grid_eventos.Rows.Insert(0, "Finaliza Compra folio " & dr("IdCompra").ToString, Date.Now)
 
-                                    NotifyIcon2.Visible = True
-                                    NotifyIcon2.BalloonTipIcon = ToolTipIcon.Info
-                                    NotifyIcon2.BalloonTipTitle = "Compra / Venta Franquicia recibida correctamente"
-                                    NotifyIcon2.BalloonTipText = "Se han recibido una compra con los productos: " & productosxd & " correctamente"
-                                    Dim soundplayer As New SoundPlayer("C:\ControlNegociosPro\sonido.wav")
-                                    soundplayer.Play()
+                                    'NotifyIcon2.Visible = True
+                                    'NotifyIcon2.BalloonTipIcon = ToolTipIcon.Info
+                                    'NotifyIcon2.BalloonTipTitle = "Compra / Venta Franquicia recibida correctamente"
+                                    'NotifyIcon2.BalloonTipText = "Se han recibido una compra con los productos: " & productosxd & " correctamente"
+                                    'Dim soundplayer As New SoundPlayer("C:\ControlNegociosPro\sonido.wav")
+                                    'soundplayer.Play()
 
-                                    NotifyIcon2.ShowBalloonTip(9000)
+                                    'NotifyIcon2.ShowBalloonTip(9000)
                                 End If
                             Else
                                 MsgBox(sinfo)
