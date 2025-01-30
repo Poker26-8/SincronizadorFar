@@ -524,7 +524,7 @@ Public Class frmSincro
             'My.Application.DoEvents()
 
             'bajaExitTrasEntrada()
-            'My.Application.DoEvents()
+            'My.Application.DoEvents 
 
             buscaDevoluciones()
             My.Application.DoEvents()
@@ -1810,11 +1810,27 @@ Public Class frmSincro
                         Dim idcompra As Integer = 0
 
                         If CStr(dr("NumFactura").ToString) = "" Then
-                            odata.getDr(cnn, dr2, "select Id from Compras where NumRemision = '" & dr("NumRemision").ToString & "' and Proveedor = '" & dr("Proveedor").ToString & "'", "drdos")
+                            odata.getDr(cnn, dr2, "select Id from Compras where NumRemision = '" & dr("NumRemision").ToString & "' and Proveedor = '" & dr("Proveedor").ToString & "'", sinfo)
                         Else
                             odata.getDr(cnn, dr2, "select Id from Compras where NumFactura = '" & dr("NumFactura").ToString & "' and NumRemision = '" & dr("NumRemision").ToString & "' and Proveedor = '" & dr("Proveedor").ToString & "'", "drdos")
                         End If
-                        idcompra = dr2("Id").ToString
+                        If dr2 IsNot Nothing Then
+                            idcompra = If(IsDBNull(dr2(0)), 0, Convert.ToInt32(dr2(0)))
+                        Else
+                            idcompra = 0 ' No se encontró un DataRow, asignar 0
+                        End If
+                        If idcompra = 0 Then
+                            'If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
+                            ssql3 = "update AbonoE set Cargado=1 where id=" & dr("id").ToString
+                                If odata.runSp(cnn, ssql3, sinfo) Then
+                                    odata.runSp(cnn, "update Compras set Cargado = 0 where Id = " & idcompra & "", sinfo)
+                                    grid_eventos.Rows.Insert(0, "Finaliza Abono Compra " & dr("id").ToString, Date.Now)
+                                End If
+                            'Else
+                            'MsgBox(sinfo)
+                            'End If
+                            Continue For
+                        End If
                         Dim formadepago As String = ""
                         ssqlinsertal = "INSERT INTO actuabonocompras(IdCompra, NumFactura, NumRemision, Proveedor, Concepto, Fecha, Abono, Saldo, MontoEfec, NumSuc, Bajado, FormaPago, Banco" &
                                         ") VALUES (" & idcompra & ",'" & dr("NumFactura").ToString & "','" & dr("NumRemision").ToString & "','" & dr("Proveedor").ToString & "','" & dr("Concepto").ToString & "','" & Format(CDate(dr("Fecha").ToString), "yyyy-MM-dd") & "','" & Replace(dr("Abono").ToString, ",", "") & "','" & Replace(dr("Saldo").ToString, ",", "") & "','" & Replace(dr("Efectivo").ToString, ",", "") &
@@ -2231,8 +2247,8 @@ Public Class frmSincro
                             MaxNumTraspasosE = 1
                         End If
 
-                        ssqlinsertal = "INSERT INTO traspasos(NumTraspasosS,NumTraspasosE,Nombre,Fecha,Hora,Origen,Destino,Tipo,CargadoS) " &
-                                                   " VALUES (" & MaxNumTraspasosS & "," & MaxNumTraspasosE & ",'TRASLADO','" & Format(CDate(dr("FVenta").ToString), "yyyy-MM-dd") & "','" & dr("HVenta").ToString & "'," & IdOrigen & "," & IdDestino & ",'SALIDA',1)"
+                        ssqlinsertal = "INSERT INTO traspasos(NumTraspasosS,NumTraspasosE,Nombre,Fecha,Hora,Origen,Destino,Tipo,CargadoS,Comentario) " &
+                                                   " VALUES (" & MaxNumTraspasosS & "," & MaxNumTraspasosE & ",'TRASLADO','" & Format(CDate(dr("FVenta").ToString), "yyyy-MM-dd") & "','" & dr("HVenta").ToString & "'," & IdOrigen & "," & IdDestino & ",'SALIDA',1,'" & dr("Folio").ToString & "')"
 
                         If odata2.runSp(cnn2, ssqlinsertal, sinfo) Then
 
@@ -2328,6 +2344,7 @@ Public Class frmSincro
                                 busca_Detalle(dr("Folio").ToString)
                                 ssql3 = "update ventas set Cargado=1 where Folio=" & dr("Folio").ToString
                                 If odata.runSp(cnn, ssql3, sinfo) Then
+                                    grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion folio " & dr("Folio").ToString, Date.Now)
                                 Else
                                     MsgBox(sinfo)
                                 End If
@@ -2337,9 +2354,9 @@ Public Class frmSincro
                                 MsgBox(sinfo)
 
 
-                                If odata.runSp(cnn, ssql3, sinfo) Then
-                                    grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion folio " & dr("Folio").ToString, Date.Now)
-                                End If
+                                'If odata.runSp(cnn, ssql3, sinfo) Then
+                                '    grid_eventos.Rows.Insert(0, "Finaliza Sincronizacion folio " & dr("Folio").ToString, Date.Now)
+                                'End If
                             End If
                         End If
                     Next
@@ -2562,6 +2579,7 @@ Public Class frmSincro
         Dim sinfo As String = ""
         Dim odata3 As New ToolKitSQL.myssql
         Dim odata4 As New ToolKitSQL.myssql
+        Dim fol As Integer = Folio
 
         If odata3.dbOpen(cnn3, sTargetlocal, sinfo) Then
             If odata4.dbOpen(cnn4, sTargetdSincro, sinfo) Then
@@ -2582,7 +2600,7 @@ Public Class frmSincro
                         IdProdNube = d3(0).ToString
 
                         ssqlinsertal = ""
-                        ssqlinsertal = "insert into actuinvtraspasos(Codigo,Descripcion,Cantidad,NumSuc,Id_byzinventario,Tipo,Lote,FechaCad) values ('" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "'," & dr4("Cantidad").ToString & "," & vardestino & "," & IdProdNube & ",'ENTRADA','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "')"
+                        ssqlinsertal = "insert into actuinvtraspasos(Codigo,Descripcion,Cantidad,NumSuc,Id_byzinventario,Tipo,Lote,FechaCad,NumSucO) values ('" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "'," & dr4("Cantidad").ToString & "," & vardestino & "," & IdProdNube & ",'ENTRADA','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "'," & fol & ")"
                         odata4.runSp(cnn4, ssqlinsertal, sinfo)
                         'If dr4("Lote") <> "" Then
                         '    sqllote = ""
