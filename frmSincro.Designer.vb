@@ -23,7 +23,7 @@ Partial Class frmSincro
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSincro))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -41,6 +41,7 @@ Partial Class frmSincro
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NotifyIcon2 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         CType(Me.grid_eventos, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,8 +127,8 @@ Partial Class frmSincro
         '
         Me.grid_eventos.AllowUserToAddRows = False
         Me.grid_eventos.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.grid_eventos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.grid_eventos.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle2
         Me.grid_eventos.BackgroundColor = System.Drawing.Color.White
         Me.grid_eventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.grid_eventos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2})
@@ -195,8 +196,12 @@ Partial Class frmSincro
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(318, 22)
         Me.Label4.TabIndex = 141
-        Me.Label4.Text = "Delsscom Sincronizador Farmacias Version 2.9"
+        Me.Label4.Text = "Delsscom Sincronizador Farmacias Version 2.10"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Timer1
+        '
+        Me.Timer1.Interval = 1800000
         '
         'frmSincro
         '
@@ -235,4 +240,5 @@ Partial Class frmSincro
     Friend WithEvents NotifyIcon2 As NotifyIcon
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
+    Friend WithEvents Timer1 As Timer
 End Class

@@ -236,6 +236,7 @@ Public Class frmSincro
                 If conecta() Then
                     insertarcampos()
                     Timer_datos.Start()
+                    Timer1.Start()
                 Else
                     Timer_reconecta.Start()
                 End If
@@ -2576,16 +2577,18 @@ Public Class frmSincro
         Dim dt4 As New DataTable
         Dim d3 As DataRow
         Dim dr4 As DataRow
+        Dim dr44 As DataRow
         Dim sinfo As String = ""
         Dim odata3 As New ToolKitSQL.myssql
         Dim odata4 As New ToolKitSQL.myssql
         Dim fol As Integer = Folio
+        Dim voy As Integer = 0
 
         If odata3.dbOpen(cnn3, sTargetlocal, sinfo) Then
             If odata4.dbOpen(cnn4, sTargetdSincro, sinfo) Then
                 If odata3.getDt(cnn3, dt4, sSQL, "dtcuatro") Then
                     For Each dr4 In dt4.Rows
-
+                        voy = dr4("Id").ToString
                         My.Application.DoEvents()
 
                         ssqlinsertal = ""
@@ -2598,6 +2601,15 @@ Public Class frmSincro
                         Dim IdProdNube As Integer = 0
                         odata4.getDr(cnn4, d3, "select Id From productos where Codigo = '" & dr4("Codigo").ToString & "' and NumSuc = " & susursalr & "", sinfo)
                         IdProdNube = d3(0).ToString
+
+                        Dim maxIdArriba As Integer = 0
+                        odata4.getDr(cnn4, dr44, "select MAX(Id) From traspasosdetalle where IdTraspaso = " & maxId & "", sinfo)
+                        maxIdArriba = dr44(0).ToString
+
+
+                        If odata3.runSp(cnn3, "Update trasladosdet set IdNube = " & maxIdArriba & " where Id = " & voy & "", sinfo) Then
+                        Else
+                        End If
 
                         ssqlinsertal = ""
                         ssqlinsertal = "insert into actuinvtraspasos(Codigo,Descripcion,Cantidad,NumSuc,Id_byzinventario,Tipo,Lote,FechaCad,NumSucO) values ('" & dr4("Codigo").ToString & "','" & dr4("Nombre").ToString & "'," & dr4("Cantidad").ToString & "," & vardestino & "," & IdProdNube & ",'ENTRADA','" & dr4("Lote").ToString & "','" & dr4("FCaduca").ToString & "'," & fol & ")"
@@ -5569,4 +5581,36 @@ Public Class frmSincro
         End With
     End Function
 
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Timer1.Stop()
+
+        Dim comparamin As Integer = 10
+
+        For i = 0 To grid_eventos.RowCount - 1
+            Dim varMinutos As Double = DateDiff(DateInterval.Minute, CDate(grid_eventos.Rows(i).Cells(1).Value.ToString), CDate(Date.Now))
+
+            If varMinutos > comparamin Then
+                Dim rpro As Boolean
+
+                Dim s As String = "DelsscomSinCNP.exe"
+                Dim p As New Process()
+
+                Try
+                    If rpro = True Then
+                        'MsgBox("excel se esta ejecutando")
+                    Else
+                        p.StartInfo.FileName = s
+                        p.Start()
+                        End
+                    End If
+                Catch ex As Exception
+
+                End Try
+            End If
+
+            Exit For
+        Next
+
+        Timer1.Start()
+    End Sub
 End Class
