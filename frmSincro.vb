@@ -448,6 +448,7 @@ Public Class frmSincro
         If conecta() Then
             Timer_reconecta.Stop()
             Timer_datos.Start()
+            Timer1.Start()
         Else
             Timer_reconecta.Start()
         End If
@@ -458,7 +459,7 @@ Public Class frmSincro
 
         Timer_datos.Stop()
 
-        'grid_eventos.Rows.Insert(0, "Entro21", Date.Now)
+        grid_eventos.Rows.Insert(0, "Entra", Date.Now)
 
         get_sucursales()
         My.Application.DoEvents()
@@ -540,83 +541,6 @@ Public Class frmSincro
             My.Application.DoEvents()
 
         End If
-
-        '''If Trim(sTargetdAutoFac) <> "" Then
-        '''    My.Application.DoEvents()
-        '''    subeVentasF()
-        '''End If
-
-        '''If Trim(sTargetdAndroid) <> "" Then
-
-        '''    My.Application.DoEvents()
-        '''    subeEmpleadosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subeProductosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subeClientesAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subeDatosTicketAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaClientesAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaVentasAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaActuVentasAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaAbonosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subirVentasAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaTraspasosEntradaAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    bajaPedidosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    eliminarPedidosNewAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    eliminarPedidosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subirPedidosAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    eliminarPedidosNubeAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    eliminarClienteNubeAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    eliminarProductosNubeAndroid()
-
-        '''    My.Application.DoEvents()
-        '''    subirTraspasosAndroid()
-
-        '''End If
-
-
-        'My.Application.DoEvents()
-        'grid_eventos.Rows.Insert(0, "Entro21", Date.Now)
-
-        'My.Application.DoEvents()
-        'subeProveedores()
-        'My.Application.DoEvents()
-        ' bajaProveedores()
-
-        'My.Application.DoEvents()
-        '  subeClientes()
-        'My.Application.DoEvents()
-        '  bajaClientes()
 
 
         Timer_datos.Start()
@@ -2603,12 +2527,12 @@ Public Class frmSincro
                         IdProdNube = d3(0).ToString
 
                         Dim maxIdArriba As Integer = 0
-                        odata4.getDr(cnn4, dr44, "select MAX(Id) From traspasosdetalle where IdTraspaso = " & maxId & "", sinfo)
-                        maxIdArriba = dr44(0).ToString
+                        If odata4.getDr(cnn4, dr44, "select MAX(Id) From traspasosdetalle where IdTraspaso = " & maxId & "", sinfo) Then
 
+                            maxIdArriba = dr44(0).ToString
 
-                        If odata3.runSp(cnn3, "Update trasladosdet set IdNube = " & maxIdArriba & " where Id = " & voy & "", sinfo) Then
-                        Else
+                            odata3.runSp(cnn3, "Update trasladosdet set IdNube = " & maxIdArriba & " where Id = " & voy & "", sinfo)
+
                         End If
 
                         ssqlinsertal = ""
